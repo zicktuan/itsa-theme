@@ -2,128 +2,140 @@
     global $myplugin;
     $optionTheme  = $myplugin->themeSettings->getSettings();
     $logo = !empty($optionTheme['awe_header_logo']) ? $optionTheme['awe_header_logo'] : '';
-    $fb = !empty($optionTheme['awe_social_fb']) ? $optionTheme['awe_social_fb'] : '';
-    $ig = !empty($optionTheme['awe_social_ins']) ? $optionTheme['awe_social_ins'] : '';
-    $tw = !empty($optionTheme['awe_social_twitter']) ? $optionTheme['awe_social_twitter'] : '';
 ?>
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://demo-storage.com/pm/html/restbeef/ -->
+<!-- saved from url=(0048)/index.html -->
 <html lang="en">
+
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title><?php bloginfo('title')?></title>
-    <meta name="robots" content="noindex, follow">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo get_template_directory_uri() . '/assets/images/favicon.png'?>">
+    <!-- metas -->
 
-    <?php wp_head() ?>
+    <meta name="author" content="Website Design Templates">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="IT Solutions and Services HTML Template">
+    <meta name="description" content="Solutic - IT Solutions and Services HTML Template">
 
+    <!-- title  -->
+    <title>Solutic - IT Solutions and Services HTML Template</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="<?php echo get_template_directory_uri() . '/assets/images/logos/favicon.png'?>">
+    <link rel="apple-touch-icon" href="<?php echo get_template_directory_uri() . '/assets/images/logos/apple-touch-icon-57x57.png'?>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri() . '/assets/images/logos/apple-touch-icon-72x72.png'?>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_template_directory_uri() . '/assets/images/logos/apple-touch-icon-114x114.png'?>">
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/css/plugins.css'?>">
+
+    <!-- search css -->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/search/search.css'?>">
+
+    <!-- quform css -->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/quform/css/base.css'?>">
+
+    <!-- theme core css -->
+    <link href="<?php echo get_template_directory_uri() . '/assets/css/styles.css'?>" rel="stylesheet">
+
+    <!-- font awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+    <!-- <script type="text/javascript" id="www-widgetapi-script"
+        src="./Solutic - IT Solutions and Services HTML Template_files/www-widgetapi.js.download" async=""></script> -->
+    <script src="<?php echo get_template_directory_uri() . '/assets/css/iframe_api'?>"></script>
+    <style type="text/css" id="jarallax-clip-0">
+        #jarallax-container-0 {
+            clip: rect(0 1903px 499.171875px 0);
+            clip: rect(0, 1903px, 499.171875px, 0);
+        }
+    </style>
 </head>
-<?php global $wp_query; ?>
+
 <body>
+
+    <!-- PAGE LOADING
+    ================================================== -->
+
+
+    <!-- MAIN WRAPPER
+    ================================================== -->
     <div class="main-wrapper">
-    <?php
-        $pageId = get_the_ID();
-        $bannerPage = get_post_meta($pageId, 'awe_banner_page', true);
-    ?>
 
-        <!-- Preloader start -->
-        <div id="preloader" style="display: none;">
-            <div class="preloader">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <!-- Preloader End -->
+        <!-- HEADER
+        ================================================== -->
+        <header class="header-style2">
+            <div id="logo-js" data-logo="<?php echo $logo?>"></div>
+            <div class="navbar-default border-bottom border-color-light-white">
 
-        <!-- Header Start  -->
-        <div id="header" class="section header-section header-section-05 sticky">
-
-            <div class="container">
-
-                <!-- Header Wrap Start  -->
-                <div class="header-wrap">
-
-                    <div class="header-logo">
-                        <a href="<?php echo home_url() ?>"><img src="<?php echo $logo ?>" alt=""></a>
+                <!-- start top search -->
+                <div class="top-search bg-primary">
+                    <div class="container-fluid px-lg-1-6 px-xl-2-5 px-xxl-2-9">
+                        <form class="search-form" action="/search.html" method="GET" accept-charset="utf-8">
+                            <div class="input-group">
+                                <span class="input-group-addon cursor-pointer">
+                                    <button class="search-form_submit fas fa-search text-white" type="submit"></button>
+                                </span>
+                                <input type="text" class="search-form_input form-control" name="s" autocomplete="off"
+                                    placeholder="Type &amp; hit enter...">
+                                <span class="input-group-addon close-search mt-1"><i class="fas fa-times"></i></span>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="header-menu d-none d-lg-block">
-                            <?php
-                            wp_nav_menu(
-                                [
-                                    'theme_location' => 'awe-header-menu',
-                                    'walker'         => new CustomPrimaryMenuWalker(),
-                                    'container' => 'ul',
-                                    'menu_class' => 'main-menu',
-                                    // 'menu_id' => 'menu-main-menu',
-                                ]
-                            );
-                            ?>
-                    </div>
-
-                    <!-- Header Meta Start -->
-                    <div class="header-meta">
-                        <!-- Header Social Start -->
-                        <div class="header-social">
-                            <ul>
-                                <?php echo ($fb) ? '<li><a href="'.$fb.'"><i class="fab fa-facebook-f"></i></a></li>' : ''?>
-                                <?php echo ($ig) ? '<li><a href="'.$ig.'"><i class="fab fa-twitter"></i></a></li>' : ''?>
-                                <?php echo ($tw) ? '<li><a href="'.$tw.'"><i class="fab fa-linkedin-in"></i></a></li>' : ''?>
-                            </ul>
-                        </div>
-
-                        <!-- Header Toggle Start -->
-                        <div class="header-toggle d-lg-none">
-                            <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-                        <!-- Header Toggle End -->
-                    </div>
-                    <!-- Header Meta End  -->
-
                 </div>
-                <!-- Header Wrap End  -->
+                <!-- end top search -->
 
-            </div>
-        </div>
-        <!-- Header End -->
+                <div class="container-fluid px-lg-1-6 px-xl-2-5 px-xxl-2-9">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-12">
+                            <div class="menu_area alt-font">
+                                <nav class="navbar navbar-expand-lg navbar-light p-0 current">
+                                    <div class="navbar-header navbar-header-custom">
+                                        <!-- start logo -->
+                                        <a href="<?php home_url()?>" class="navbar-brand logodefault">
+                                        <img id="logo" src="<?php echo $logo ?>" alt="logo"></a>
+                                        <!-- end logo -->
+                                    </div>
 
-        <!-- Offcanvas Start-->
-        <div class="offcanvas offcanvas-start" id="offcanvasExample">
-        <div class="offcanvas-header">
-            <!-- Offcanvas Logo Start -->
-            <div class="offcanvas-logo">
-                <a href="<?php echo home_url() ?>">
-                    <img src="<?php echo get_template_directory_uri() . '/assets/images/logo-white.png'?>" alt="">
-                </a>
-            </div>
-            <!-- Offcanvas Logo End -->
-            <button type="button" class="close-btn" data-bs-dismiss="offcanvas"><i class="flaticon-close"></i></button>
-        </div>
+                                    <div class="navbar-toggler bg-primary"></div>
 
-        <!-- Offcanvas Body Start -->
-        <div class="offcanvas-body">
-            <div class="offcanvas-menu">
-                <?php
-                wp_nav_menu(
-                    [
-                        'theme_location' => 'awe-header-menu',
-                        'walker'         => new CustomPrimaryMenuWalker(),
-                        'container' => 'ul',
-                        'menu_class' => 'main-menu',
-                        // 'menu_id' => 'menu-main-menu',
-                    ]
-                );
-                ?>
+                                    <!-- start menu area -->
+                                    <?php
+                                        wp_nav_menu(
+                                            [
+                                                'theme_location' => 'awe-header-menu',
+                                                'walker'         => new CustomPrimaryMenuWalker(),
+                                                'container'            => '',
+                                                'items_wrap'     => '<ul class="navbar-nav ms-auto itsa-nav" id="nav">%3$s</ul>',
+                                            ]
+                                        );
+                                    ?>
+                                    <!-- <ul class="navbar-nav ms-auto" id="nav" style="">
+                                        <li class="current"> <a href="/">Home</a></li>
+                                        <li><a href="/about-us.html">About Us</a>
+                                        <li><a href="/about-us.html">Our Team</a>
+                                        <li><a href="/services.html">Our Services</a></li>
+                                    </ul> -->
+                                    <!-- end menu area -->
+
+                                    <!-- start attribute navigation -->
+                                    <div class="attr-nav align-items-xl-center ms-xl-auto main-font">
+                                        <ul>
+                                            <!-- <li class="search"><a href="/index.html"><i class="fas fa-search"></i></a>
+                                            </li> -->
+                                            <li class="d-none d-xl-inline-block">
+                                                <a href="<?php ?>"
+                                                    class="btn-style1 medium"><span>Contact Us</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end attribute navigation -->
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- Offcanvas Body End -->
-    </div>
-    <!-- Offcanvas End -->
+        </header>

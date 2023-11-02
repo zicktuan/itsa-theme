@@ -31,7 +31,7 @@ class CustomPrimaryMenuWalker extends Walker_Nav_Menu {
         );
 
         ! empty ( $class_names )
-        and $class_names = ' class="'. esc_attr( $class_names ) . '"';
+        and $class_names = ' class="itsa-nav '. esc_attr( $class_names ) . '"';
 
         $output .= "<li $class_names>";
         $attributes  = '';

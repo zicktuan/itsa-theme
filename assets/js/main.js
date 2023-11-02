@@ -1,367 +1,196 @@
-    "use strict";
+/*-----------------------------------------------------------------------------------
 
-
-    /*--
-        preloader
-    -----------------------------------*/
-     $(window).on('load', function(event) {
-        $('#preloader').delay(500).fadeOut(500);
-    });
-
-    /*--
-        Header Sticky
-    -----------------------------------*/
-
-    window.onscroll = function () {
-        const left = document.getElementById("header");
-
-        if (left.scrollTop > 50 || self.pageYOffset > 50) {
-            left.classList.add("sticky")
-        } else {
-            left.classList.remove("sticky");
-        }
-    }    
-
-    
-    /*--
-        Menu parent Element Icon
-    -----------------------------------*/
-    const $subMenu = document.querySelectorAll('.sub-menu');
-    $subMenu.forEach(function (subMenu) {
-        const menuExpand = document.createElement('span')
-        menuExpand.classList.add('menu-icon')
-        // menuExpand.innerHTML = '+'
-        subMenu.parentElement.insertBefore(menuExpand, subMenu)
-        if (subMenu.classList.contains('mega-menu')) {
-            subMenu.classList.remove('mega-menu')
-            subMenu.querySelectorAll('ul').forEach(function (ul) {
-                ul.classList.add('sub-menu')
-                const menuExpand = document.createElement('span')
-                menuExpand.classList.add('menu-icon')
-                menuExpand.innerHTML = '+'
-                ul.parentElement.insertBefore(menuExpand, ul)
-            })
-        }
-    })
-
-    /*--
-        Search Js
-    -----------------------------------*/
-	var $searchWrap = $('.search-wrap');
-	var $navSearch = $('.search-btn');
-	var $searchClose = $('#search-close');
-
-	$('.search-btn').on('click', function (e) {
-		e.preventDefault();
-		$searchWrap.animate({ opacity: 'toggle' }, 500);
-		$navSearch.add($searchClose).addClass("open");
-	});
-
-	$('.search-close').on('click', function (e) {
-		e.preventDefault();
-		$searchWrap.animate({ opacity: 'toggle' }, 500);
-		$navSearch.add($searchClose).removeClass("open");
-	});
-
-	function closeSearch() {
-		$searchWrap.fadeOut(200);
-		$navSearch.add($searchClose).removeClass("open");
-	}
-
-	$(document.body).on('click', function (e) {
-		closeSearch();
-	});
-
-	$(".search-btn, .main-search-input").on('click', function (e) {
-		e.stopPropagation();
-	});
-
+    Theme Name: Solutic - IT Solutions and Services HTML Template
+    Description: IT Solutions and Services HTML Template
+    Author: Website Design Templates
+    Version: 2.0
         
-    /*--
-        Mobile Menu 
-    -----------------------------------*/
+    ---------------------------------- */
 
-    /* Get Sibling */
-    const getSiblings = function (elem) {
-        const siblings = []
-        let sibling = elem.parentNode.firstChild
-        while (sibling) {
-            if (sibling.nodeType === 1 && sibling !== elem) {
-                siblings.push(sibling)
-            }
-            sibling = sibling.nextSibling
+    !(function (t) {
+        "use strict";
+        var s = t(window);
+        function a() {
+            var e, a;
+            (e = t(".full-screen")), (a = s.height()), e.css("min-height", a), (e = t("header").height()), (a = t(".screen-height")), (e = s.height() - e), a.css("height", e);
         }
-        return siblings
-    }
-
-    /* Slide Up */
-    const slideUp = (target, time) => {
-        const duration = time ? time : 500;
-        target.style.transitionProperty = 'height, margin, padding'
-        target.style.transitionDuration = duration + 'ms'
-        target.style.boxSizing = 'border-box'
-        target.style.height = target.offsetHeight + 'px'
-        target.offsetHeight
-        target.style.overflow = 'hidden'
-        target.style.height = 0
-        window.setTimeout(() => {
-            target.style.display = 'none'
-            target.style.removeProperty('height')
-            target.style.removeProperty('overflow')
-            target.style.removeProperty('transition-duration')
-            target.style.removeProperty('transition-property')
-        }, duration)
-    }
-
-    /* Slide Down */
-    const slideDown = (target, time) => {
-        const duration = time ? time : 500;
-        target.style.removeProperty('display')
-        let display = window.getComputedStyle(target).display
-        if (display === 'none') display = 'block'
-        target.style.display = display
-        const height = target.offsetHeight
-        target.style.overflow = 'hidden'
-        target.style.height = 0
-        target.offsetHeight
-        target.style.boxSizing = 'border-box'
-        target.style.transitionProperty = 'height, margin, padding'
-        target.style.transitionDuration = duration + 'ms'
-        target.style.height = height + 'px'
-        window.setTimeout(() => {
-            target.style.removeProperty('height')
-            target.style.removeProperty('overflow')
-            target.style.removeProperty('transition-duration')
-            target.style.removeProperty('transition-property')
-        }, duration)
-    }
-
-    /* Slide Toggle */
-    const slideToggle = (target, time) => {
-        const duration = time ? time : 500;
-        if (window.getComputedStyle(target).display === 'none') {
-            return slideDown(target, duration)
-        } else {
-            return slideUp(target, duration)
-        }
-    }
-
-
-    /*--
-		Offcanvas/Collapseable Menu 
-	-----------------------------------*/
-    const offCanvasMenu = function (selector) {
-
-        const $offCanvasNav = document.querySelector(selector),
-            $subMenu = $offCanvasNav.querySelectorAll('.sub-menu');
-        $subMenu.forEach(function (subMenu) {
-            const menuExpand = document.createElement('span')
-            menuExpand.classList.add('menu-expand')
-            // menuExpand.innerHTML = '+'
-            subMenu.parentElement.insertBefore(menuExpand, subMenu)
-            if (subMenu.classList.contains('mega-menu')) {
-                subMenu.classList.remove('mega-menu')
-                subMenu.querySelectorAll('ul').forEach(function (ul) {
-                    ul.classList.add('sub-menu')
-                    const menuExpand = document.createElement('span')
-                    menuExpand.classList.add('menu-expand')
-                    menuExpand.innerHTML = '+'
-                    ul.parentElement.insertBefore(menuExpand, ul)
-                })
-            }
-        })
-
-        $offCanvasNav.querySelectorAll('.menu-expand').forEach(function (item) {
-            item.addEventListener('click', function (e) {
-                e.preventDefault()
-                const parent = this.parentElement
-                if (parent.classList.contains('active')) {
-                    parent.classList.remove('active');
-                    parent.querySelectorAll('.sub-menu').forEach(function (subMenu) {
-                        subMenu.parentElement.classList.remove('active');
-                        slideUp(subMenu)
-                    })
-                } else {
-                    parent.classList.add('active');
-                    slideDown(this.nextElementSibling)
-                    getSiblings(parent).forEach(function (item) {
-                        item.classList.remove('active')
-                        item.querySelectorAll('.sub-menu').forEach(function (subMenu) {
-                            subMenu.parentElement.classList.remove('active');
-                            slideUp(subMenu)
-                        })
-                    })
-                }
-            })
-        })
-    }
-    offCanvasMenu('.offcanvas-menu');
-
-  /*--
-    magnificPopup video view 
-  -----------------------------------*/	
-	$('.popup-video').magnificPopup({
-		type: 'iframe'
-	});
-
-  /*--    
-      Counter Up
-  -----------------------------------*/  
-
-    $('.counter').counterUp({
-        delay: 10,
-        time: 1500,
-    });
-
-  
- 
-    /*--
-        Case Study Active
-	-----------------------------------*/
-  var swiper = new Swiper('.case-study-active', {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    centeredSlides: true,
-    loop: true,
-    pagination: {
-        el: ".case-study-active .swiper-pagination",
-        clickable: true,
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-      },
-      576: {
-        slidesPerView: 1,
-      },
-      768: {
-        slidesPerView: 1,
-      },
-      992: {
-        slidesPerView: 2,
-      },
-      1200: {
-        slidesPerView: 3,
-      },
-    }
-  });
-
-
-  /*--
-        Testimonial Active
-	-----------------------------------*/
-    var swiper = new Swiper('.testimonial-active', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,        
-    });
-
-    /*--    
-        Testimonial Two Active
-    -----------------------------------*/
-    var swiper = new Swiper(".testimonial-02-active", {
-        slidesPerView: 2,
-        spaceBetween: 130,
-        loop: true,
-        pagination: {
-            el: ".testimonial-02-active .swiper-pagination",
-            clickable: true,
-        },
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-          },
-          576: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 1,
-          },
-          992: {
-            slidesPerView: 1,
-          },
-          1400: {
-            slidesPerView: 2,
-          },
-        },
-    });
-  
-
-    /*--    
-        Brand Active
-    -----------------------------------*/
-    var swiper = new Swiper(".brand-active .swiper-container", {
-        slidesPerView: 5,
-        spaceBetween: 30,
-        loop: true,
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-          },
-          576: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 3,
-          },
-          992: {
-            slidesPerView: 5,
-          },
-        },
-    });
-
-    /*--    
-        Testimonial Two Active
-    -----------------------------------*/
-    var swiper = new Swiper(".team-active", {
-        slidesPerView: 4,
-        loop: true,
-        pagination: {
-            el: ".team-active .swiper-pagination",
-            clickable: true,
-        },
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-          },
-          576: {
-            slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 3,
-          },
-          992: {
-            slidesPerView: 4,
-          },
-        },
-    });
-
-
-
-    /*--    
-      Progress Bar
-  -----------------------------------*/  
-
-    if($('.progress-line').length) {
-        $('.progress-line').appear(function(){
-            var el = $(this);
-            var percent = el.data('width');
-            $(el).css('width', percent+'%');
-        }, {accY: 0});
-    }
-
-
-
-    /*--
-        AOS
-    -----------------------------------*/   
-    AOS.init({
-        duration: 1200,
-        once: true,
-    });
-
-
-
-
+        t("#preloader").fadeOut("normall", function () {
+            t(this).remove();
+        }),
+            s.on("scroll", function () {
+                var e = s.scrollTop(),
+                    a = t(".navbar-brand img"),
+                    o = t(".navbar-brand.logodefault img");
+                var logoItsaElm = document.getElementById("logo-js")
+                var logoItsa = logoItsaElm.getAttribute("data-logo");
+                e <= 50
+                    ? (t("header").removeClass("scrollHeader").addClass("fixedHeader"), a.attr("src", "img/logos/logo-inner.png"))
+                    : (t("header").removeClass("fixedHeader").addClass("scrollHeader"), a.attr("src", logoItsa)),
+                    o.attr("src", logoItsa);
+            }),
+            s.on("scroll", function () {
+                500 < t(this).scrollTop() ? t(".scroll-to-top").fadeIn(400) : t(".scroll-to-top").fadeOut(400);
+            }),
+            t(".scroll-to-top").on("click", function (e) {
+                e.preventDefault(), t("html, body").animate({ scrollTop: 0 }, 600);
+            }),
+            t(".parallax,.bg-img").each(function (e) {
+                t(this).attr("data-background") && t(this).css("background-image", "url(" + t(this).data("background") + ")");
+            }),
+            t(".story-video").magnificPopup({ delegate: ".video", type: "iframe" }),
+            t(".source-modal").magnificPopup({ type: "inline", mainClass: "mfp-fade", removalDelay: 160 }),
+            new WOW({ boxClass: "wow", animateClass: "animated", offset: 0, mobile: !1, live: !0 }).init(),
+            s.resize(function (e) {
+                setTimeout(function () {
+                    a();
+                }, 500),
+                    e.preventDefault();
+            }),
+            0 !== t(".copy-clipboard").length &&
+                (new ClipboardJS(".copy-clipboard"),
+                t(".copy-clipboard").on("click", function () {
+                    var e = t(this);
+                    e.text();
+                    e.text("Copied"),
+                        setTimeout(function () {
+                            e.text("Copy");
+                        }, 2e3);
+                })),
+            a(),
+            t(document).ready(function () {
+                t(".testimonial-carousel1").owlCarousel({
+                    loop: !0,
+                    responsiveClass: !0,
+                    nav: !1,
+                    navText: ["<span class='fa-solid fa-arrow-left-long'></span>", "<span class='fa-solid fa-arrow-right-long'></span>"],
+                    dots: !0,
+                    margin: 0,
+                    center: !1,
+                    autoplay: !0,
+                    autoplayTimeout: 5e3,
+                    smartSpeed: 1500,
+                    items: 1,
+                    responsive: { 992: { dots: !1, nav: !0 } },
+                }),
+                    t(".portfolio-carousel").owlCarousel({
+                        loop: !0,
+                        responsiveClass: !0,
+                        autoplay: !0,
+                        autoplayTimeout: 5e3,
+                        smartSpeed: 1500,
+                        nav: !1,
+                        dots: !1,
+                        center: !1,
+                        margin: 0,
+                        responsive: { 0: { items: 1 }, 576: { items: 2 }, 768: { items: 3 }, 992: { items: 3 }, 1200: { items: 4 } },
+                    }),
+                    t(".history-carousel").owlCarousel({
+                        loop: !0,
+                        responsiveClass: !0,
+                        autoplay: !0,
+                        autoplayTimeout: 5e3,
+                        smartSpeed: 1500,
+                        nav: !1,
+                        dots: !1,
+                        center: !1,
+                        margin: 0,
+                        responsive: { 0: { items: 1 }, 576: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } },
+                    }),
+                    t(".testimonial-carousel2").owlCarousel({
+                        loop: !0,
+                        responsiveClass: !0,
+                        nav: !0,
+                        navText: ["<span class='fa-solid fa-arrow-left-long'></span>", "<span class='fa-solid fa-arrow-right-long'></span>"],
+                        dots: !1,
+                        margin: 50,
+                        center: !1,
+                        autoplay: !1,
+                        autoplayTimeout: 5e3,
+                        smartSpeed: 1500,
+                        items: 1,
+                    }),
+                    t(".service-carousel").owlCarousel({
+                        loop: !0,
+                        responsiveClass: !0,
+                        autoplay: !0,
+                        autoplayTimeout: 5e3,
+                        smartSpeed: 1500,
+                        nav: !1,
+                        dots: !0,
+                        center: !1,
+                        margin: 30,
+                        responsive: { 0: { items: 1 }, 768: { items: 2 }, 1200: { items: 3 } },
+                    }),
+                    t(".clients-carousel").owlCarousel({
+                        loop: !0,
+                        responsiveClass: !0,
+                        autoplay: !0,
+                        autoplayTimeout: 5e3,
+                        smartSpeed: 1500,
+                        nav: !1,
+                        dots: !1,
+                        center: !1,
+                        margin: 30,
+                        responsive: { 0: { items: 1 }, 576: { items: 2 }, 768: { items: 3 }, 992: { items: 3 }, 1200: { items: 3 } },
+                    }),
+                    t(".clients02-carousel").owlCarousel({
+                        loop: !0,
+                        responsiveClass: !0,
+                        autoplay: !0,
+                        autoplayTimeout: 5e3,
+                        smartSpeed: 1500,
+                        nav: !1,
+                        dots: !1,
+                        center: !1,
+                        margin: 30,
+                        responsive: { 0: { items: 2 }, 576: { items: 3 }, 768: { items: 3 }, 992: { items: 4 }, 1200: { items: 5 } },
+                    }),
+                    t(".slider-fade1").owlCarousel({
+                        items: 1,
+                        loop: !0,
+                        dots: !0,
+                        margin: 0,
+                        nav: !1,
+                        navText: ["<span class='fas fa-chevron-left'></span>", "<span class='fas fa-chevron-right'></span>"],
+                        autoplay: !1,
+                        smartSpeed: 1500,
+                        mouseDrag: !1,
+                        animateIn: "fadeIn",
+                        animateOut: "fadeOut",
+                    }),
+                    t(".owl-carousel").owlCarousel({ items: 1, loop: !0, dots: !1, margin: 0, autoplay: !1, smartSpeed: 500 }),
+                    t(".slider-fade1").on("changed.owl.carousel", function (e) {
+                        e = e.item.index - 2;
+                        t("span").removeClass("animated fadeInUp"),
+                            t("h1").removeClass("animated fadeInUp"),
+                            t("p").removeClass("animated fadeInUp"),
+                            t("a").removeClass("animated fadeInUp"),
+                            t(".owl-item").not(".cloned").eq(e).find("span").addClass("animated fadeInUp"),
+                            t(".owl-item").not(".cloned").eq(e).find("h1").addClass("animated fadeInUp"),
+                            t(".owl-item").not(".cloned").eq(e).find("p").addClass("animated fadeInUp"),
+                            t(".owl-item").not(".cloned").eq(e).find("a").addClass("animated fadeInUp");
+                    }),
+                    0 !== t(".horizontaltab").length &&
+                        t(".horizontaltab").easyResponsiveTabs({
+                            type: "default",
+                            width: "auto",
+                            fit: !0,
+                            tabidentify: "hor_1",
+                            activate: function (e) {
+                                var a = t(this),
+                                    o = t("#nested-tabInfo");
+                                t("span", o).text(a.text()), o.show();
+                            },
+                        }),
+                    t(".countup").counterUp({ delay: 25, time: 2e3 }),
+                    t(".countdown").countdown({ date: "01 Aug 2025 00:01:00", format: "on" }),
+                    t(".current-year").text(new Date().getFullYear());
+            }),
+            s.on("load", function () {
+                t(".portfolio-gallery").lightGallery(),
+                    t(".portfolio-link").on("click", (e) => {
+                        e.stopPropagation();
+                    });
+            });
+    })(jQuery);
+    

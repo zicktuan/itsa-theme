@@ -1,56 +1,83 @@
-
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-    <?php
-    $idVideo = get_post_meta( get_the_ID(), 'awe_id_video', true );
-    $dateEvent = get_post_meta(get_the_ID(), 'awe_event_meta', true);
-    ?>
-
-    <div class="restbeef_blog_item">
-
-        <?php if( !empty( $idVideo ) ): ?>
-            <div class="restbeef_simple_blog_pf restbeef_blog_pf_video">
-                <div class="restbeef_blog_pf_video_wrapper restbeef_photoswipe_wrapper" data-uniqid="7315">
-                    <iframe src="https://www.youtube.com/embed/<?php echo $idVideo ?>" width="840" height="482" title="<?php the_title() ?>"></iframe>
-                </div>
-            </div>
-        <?php else: ?>
-            <?php if(has_post_thumbnail()): ?>
-                <div class="restbeef_simple_blog_pf restbeef_blog_pf_standard">
-                    <a href="<?php the_permalink()?>" class="restbeef_blog_pf_link">
-                        <img src="<?php the_post_thumbnail_url() ?>" width="840" alt="<?php the_title() ?>">
-                    </a>
-                </div>
-            <?php endif;?>
-        <?php endif ?>
-
-        <div class="restbeef_blog_excerpt">
-            <h4><a href="<?php the_permalink()?>"><?php the_title() ?></a></h4>
-            <p><?php echo wp_trim_words( $post->post_content, 90, '...' ); ?></p>
-        </div>
-
-        <div class="restbeef_simple_blog_footer">
-            <div class="restbeef_simple_blog_meta">
-                <?php if(!empty($dateEvent)): ?>
-                    <span><?php echo date('MM d, Y', strtotime($dateEvent))?></span>
-                <?php else: ?>
-                    <span><?php echo the_date() ?></span>
-                <?php endif ?>
-                <?php echo (get_comments_number(get_the_ID()) > 0) ? '<span>'.get_comments_number(get_the_ID()).' Comments</span>' : '' ?>
-            </div>
-            <div class="restbeef_simple_blog_more">
-                <a href="<?php the_permalink()?>"><?php _e('Xem Tiếp', 'bookawesome') ?></a>
-            </div>
-        </div>
-    </div>
-<?php endwhile; endif; ?>
-
-<!--<nav class="rstbeef_blog_pagination">-->
-<!--    <div class="nav-links">-->
-<!--        <span aria-current="page" class="page-numbers current">1</span>-->
-<!--        <a class="page-numbers" href="https://demo-storage.com/pm/html/restbeef/blog_sidebar.html#">2</a>-->
-<!--        <a class="page-numbers" href="https://demo-storage.com/pm/html/restbeef/blog_sidebar.html#">3</a>-->
-<!--        <span class="page-numbers dots">…</span>-->
-<!--        <a class="page-numbers" href="https://demo-storage.com/pm/html/restbeef/blog_sidebar.html#">8</a>-->
-<!--        <a class="next page-numbers" href="https://demo-storage.com/pm/html/restbeef/blog_sidebar.html#"><i class="fa fa-chevron-right"></i></a>-->
-<!--    </div>-->
-<!--</nav>-->
+<div class="col-lg-4 ps-xl-5">
+                        <div class="sidebar">
+                            <!-- <div class="widget bg-secondary mb-1-9 wow fadeInUp" data-wow-delay="200ms" style="visibility: visible; animation-delay: 200ms; animation-name: fadeInUp;">
+                                <div class="widget-content">
+                                    <h5 class="mb-3 text-white">Search</h5>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search here...">
+                                        <div class="input-group-append">
+                                            <button class="btn-style1 border-0" type="button"><span><i class="fa fa-search"></i></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="widget bg-secondary mb-1-9 wow fadeInUp" data-wow-delay="350ms" style="visibility: visible; animation-delay: 350ms; animation-name: fadeInUp;">
+                                <div class="widget-content">
+                                    <h5 class="mb-3 text-white">Recent Posts</h5>
+                                    <div class="d-flex mb-4">
+                                        <div class="flex-shrink-0">
+                                            <img src="img/blog/blog-thumb-01.jpg" alt="...">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h4 class="mb-2 h6"><a href="#!" class="text-white text-white-hover-light">Define world best IT solution technology.</a></h4>
+                                            <span class="text-white opacity8 small">June 01 2022</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-4">
+                                        <div class="flex-shrink-0">
+                                            <img src="img/blog/blog-thumb-02.jpg" alt="...">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h4 class="mb-2 h6"><a href="#!" class="text-white text-white-hover-light">5 easy ways to improve your web security.</a></h4>
+                                            <span class="text-white opacity8 small">May 28 2022</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <img src="img/blog/blog-thumb-03.jpg" alt="...">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h4 class="mb-2 h6"><a href="#!" class="text-white text-white-hover-light">How to create awesome web design.</a></h4>
+                                            <span class="text-white opacity8 small">May 24 2022</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget bg-secondary mb-1-9 wow fadeInUp" data-wow-delay="500ms" style="visibility: visible; animation-delay: 500ms; animation-name: fadeInUp;">
+                                <div class="widget-content">
+                                    <h5 class="mb-4 text-white">Categories</h5>
+                                    <ul class="category-list list-unstyled mb-0">
+                                        <li><a href="#!"><span>IT Management</span></a></li>
+                                        <li><a href="#!"><span>Technology</span></a></li>
+                                        <li><a href="#!"><span>UI/UX Design</span></a></li>
+                                        <li><a href="#!"><span>Digital Marketing</span></a></li>
+                                        <li><a href="#!"><span>SEO Implements</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="widget bg-secondary mb-1-9 wow fadeInUp" data-wow-delay="650ms" style="visibility: visible; animation-delay: 650ms; animation-name: fadeInUp;">
+                                <div class="widget-content">
+                                    <h5 class="mb-3 text-white">Tags</h5>
+                                    <div class="blog-tags mt-n2">
+                                        <a href="#!">Marketing</a>
+                                        <a href="#!">Solutions</a>
+                                        <a href="#!">App</a>
+                                        <a href="#!">Development</a>
+                                        <a href="#!">Security</a>
+                                        <a href="#!">Design</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget bg-secondary wow fadeInUp" data-wow-delay="800ms" style="visibility: visible; animation-delay: 800ms; animation-name: fadeInUp;">
+                                <div class="widget-content">
+                                    <h5 class="mb-3 text-white">Follow Us</h5>
+                                    <ul class="social-icon-style2 ps-0">
+                                        <li class="me-1"><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li class="me-1"><a href="#!"><i class="fab fa-twitter"></i></a></li>
+                                        <li class="me-1"><a href="#!"><i class="fab fa-instagram"></i></a></li>
+                                        <li class="me-0"><a href="#!"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

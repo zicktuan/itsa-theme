@@ -24,7 +24,7 @@ class AfterSetupTheme{
 
         add_filter( 'nav_menu_link_attributes', 'wpse156165_menu_add_class', 10, 3 );
 	}
-
+	
 	public function setup(){
 		load_theme_textdomain( 'bookawesome', get_template_directory() . '/languages' );
 
@@ -63,7 +63,7 @@ class AfterSetupTheme{
 		add_theme_support( 'post-thumbnails' );
 		add_image_size( 'itsa-thumbnail-74x74', 74, 74, array( 'center', 'center' ) );
 		add_image_size( 'itsa-thumbnail-70x70', 70, 70, true );
-		add_image_size( 'itsa-thumbnail-826x414', 826, 414, array( 'center', 'center' ) );
+		add_image_size( 'itsa-thumbnail-856x490', 856, 490, array( 'center', 'center' ) );
 	}
 
 	public function siteTitle($title){
